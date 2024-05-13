@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\WashStationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WashStationRepository::class)]
@@ -26,6 +28,17 @@ class WashStation
 
     #[ORM\Column]
     private ?int $latitude = null;
+
+    /**
+     * @var Collection<int, Price>
+     */
+    #[ORM\OneToMany(targetEntity: Price::class, mappedBy: 'washStation', orphanRemoval: true)]
+    private Collection $prices;
+
+    public function __construct()
+    {
+        $this->prices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +89,36 @@ class WashStation
     public function setLatitude(int $latitude): static
     {
         $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Price>
+     */
+    public function getPrices(): Collection
+    {
+        return $this->prices;
+    }
+
+    public function addPrice(Price $price): static
+    {
+        if (!$this->prices->contains($price)) {
+            $this->prices->add($price);
+            $price->setWashStation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrice(Price $price): static
+    {
+        if ($this->prices->removeElement($price)) {
+            // set the owning side to null (unless already changed)
+            if ($price->getWashStation() === $this) {
+                $price->setWashStation(null);
+            }
+        }
 
         return $this;
     }
