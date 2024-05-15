@@ -2,7 +2,7 @@ version: '3'
 
 services:
 ###> doctrine/doctrine-bundle ###
-  database:
+  eco-carwash-api-database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
@@ -18,13 +18,13 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
-  php:
+  eco-carwash-api-php:
     build:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/var/www/html
 
-  nginx:
+  eco-carwash-api-nginx:
     image: nginx:latest
     volumes:
       - .:/var/www/html
