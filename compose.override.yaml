@@ -2,7 +2,7 @@ version: '3'
 
 services:
 ###> doctrine/doctrine-bundle ###
-  eco-carwash-api-database:
+  database:
     ports:
       - "51374:5432"
 ###< doctrine/doctrine-bundle ###
