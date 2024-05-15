@@ -46,9 +46,9 @@ hooks:
         
         NODE_VERSION=18 symfony-build
         
-        mv app/var tmp/app/var
+        mv /app/var tmp/app/var
         
-        cp -r tmp/app/var app/var
+        cp -r tmp/app/var /app/var
 
     deploy: |
         set -x -e
