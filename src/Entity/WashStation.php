@@ -7,32 +7,39 @@ use App\Repository\WashStationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: WashStationRepository::class)]
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['wash_station:read']])]
 class WashStation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['wash_station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['wash_station:read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['wash_station:read'])]
     private ?string $address = null;
 
     #[ORM\Column]
-    private ?int $longitude = null;
+    #[Groups(['wash_station:read'])]
+    private ?float $longitude = null;
 
     #[ORM\Column]
-    private ?int $latitude = null;
+    #[Groups(['wash_station:read'])]
+    private ?float $latitude = null;
 
     /**
      * @var Collection<int, Price>
      */
     #[ORM\OneToMany(targetEntity: Price::class, mappedBy: 'washStation', orphanRemoval: true)]
+    #[Groups(['wash_station:read'])]
     private Collection $prices;
 
     public function __construct()
@@ -69,24 +76,24 @@ class WashStation
         return $this;
     }
 
-    public function getLongitude(): ?int
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setLongitude(int $longitude): static
+    public function setLongitude(float $longitude): static
     {
         $this->longitude = $longitude;
 
         return $this;
     }
 
-    public function getLatitude(): ?int
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    public function setLatitude(int $latitude): static
+    public function setLatitude(float $latitude): static
     {
         $this->latitude = $latitude;
 

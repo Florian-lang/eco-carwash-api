@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PriceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PriceRepository::class)]
 #[ApiResource]
@@ -13,9 +14,11 @@ class Price
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['wash_station:read'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['wash_station:read'])]
     private ?float $value = null;
 
     #[ORM\Column(options: ['default' => 0])]

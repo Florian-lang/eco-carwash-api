@@ -16,8 +16,8 @@ class WashStationFixtures extends Fixture
         $washStation = new WashStation();
         $washStation->setName('Wash Station 1');
         $washStation->setAddress('Address 1');
-        $washStation->setLongitude(1);
-        $washStation->setLatitude(1);
+        $washStation->setLongitude(1.6566);
+        $washStation->setLatitude(1.9879);
         $manager->persist($washStation);
 
         $this->addReference('washStation1', $washStation);
@@ -25,8 +25,8 @@ class WashStationFixtures extends Fixture
         $washStation = new WashStation();
         $washStation->setName('Wash Station 2');
         $washStation->setAddress('Address 2');
-        $washStation->setLongitude(2);
-        $washStation->setLatitude(2);
+        $washStation->setLongitude(2.5999);
+        $washStation->setLatitude(2.9999);
         $manager->persist($washStation);
 
         $this->addReference('washStation2', $washStation);
