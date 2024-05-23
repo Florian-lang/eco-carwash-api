@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Price::class, mappedBy: 'modelUser')]
     private Collection $prices;
 
+    #[ORM\Column(options: ['default' => 0])]
+    private ?int $appreciation = null;
+
     public function __construct()
     {
         $this->prices = new ArrayCollection();
@@ -151,6 +154,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $price->setModelUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAppreciation(): ?int
+    {
+        return $this->appreciation;
+    }
+
+    public function setAppreciation(int $appreciation): static
+    {
+        $this->appreciation = $appreciation;
 
         return $this;
     }
