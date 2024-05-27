@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PriceRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,6 +11,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PriceRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['washStation' => 'exact'])]
 class Price
 {
     #[ORM\Id]
