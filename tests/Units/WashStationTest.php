@@ -4,9 +4,11 @@ namespace App\Tests\Units;
 
 use App\Entity\Price;
 use App\Entity\WashStation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(WashStation::class)]
 class WashStationTest extends TestCase
 {
     public function testSetName(): void
