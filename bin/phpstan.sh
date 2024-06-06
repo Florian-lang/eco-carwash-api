@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "lancement du script phpstan.sh"
 
 APP_NAME=$(basename "$PWD")
