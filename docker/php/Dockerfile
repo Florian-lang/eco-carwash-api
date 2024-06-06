@@ -15,6 +15,8 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 
 RUN docker-php-ext-install mbstring exif pcntl bcmath gd pdo pdo_pgsql
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
