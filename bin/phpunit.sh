@@ -2,10 +2,8 @@
 
 APP_NAME=$(basename "$PWD")
 
-echo "This script are going to run the tests and generate the coverage report"
-
 echo -e "\033[1;34mDo you want to save the test report in var/test/logs.text? [y/n]\033[0m"
-read -r save_report
+read -r save_reportgoing
 
 if [ "$save_report" = "y" ]; then
     echo "Saving test report in var/test/logs.txt"
@@ -25,5 +23,5 @@ read -r generate_coverage
 if [ "$generate_coverage" = "y" ]; then
     echo "Generating coverage report"
     docker exec -e XDEBUG_MODE=coverage "${APP_NAME}"-php php bin/phpunit --coverage-html var/coverage
-    echo -e "\033[1;32mCoverage report generated in var/coverage\033[0m"
+    echo -e "\033[33mCoverage report generated in var/coverage\033[0m"
 fi
