@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 echo -e "\033[1;34mPlease choose the code analysis tool to use: \033[0m"
 echo "1. PHPStan"

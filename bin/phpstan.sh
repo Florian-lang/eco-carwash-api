@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 APP_NAME=$(basename "$PWD")
 echo -e "\033[1;34mEnter 1 to generate a PHPStan log file\033[0m"
 echo -e "\033[1;34mEnter 2 to display the result on the terminal logs\033[0m"

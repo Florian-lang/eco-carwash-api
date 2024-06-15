@@ -1,8 +1,6 @@
 #!/bin/bash -e
 
 APP_NAME=$(basename "$PWD")
-echo "toto"
-exit
 
 echo "Creating docker containers"
 docker-compose up -d
